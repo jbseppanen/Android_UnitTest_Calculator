@@ -58,4 +58,16 @@ public class CalculatorTest {
         assertEquals(intialString,checkString);
     }
 
+    @Test
+    public void shouldReturnLastItemRemoved() {
+        //Setup
+        String intialString = "12345.";
+        String backspacedString = "12345";
+        //Execution
+        calculator.addSymbol(intialString);
+        String checkString = calculator.removeLast();
+        //Check
+        assertEquals(backspacedString,checkString);
+    }
+
 }

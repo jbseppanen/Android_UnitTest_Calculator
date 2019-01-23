@@ -19,4 +19,11 @@ public class Calculator {
         }
         return displayString;
     }
+
+    String removeLast() {
+        displayString = displayString.substring(0, displayString.length() - 1);
+        return displayString;
+    }
+
+
 }
