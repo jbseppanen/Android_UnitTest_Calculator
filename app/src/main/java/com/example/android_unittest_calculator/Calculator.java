@@ -9,14 +9,14 @@ public class Calculator {
     }
 
     String addSymbol(String input) {
-        if (input.equals(".")) {
-            if (!displayString.contains(".")) {
-                displayString += input;
-            }
-        } else {
-            displayString += input;
-        }
+        displayString += input;
         return displayString;
     }
 
+    String addDecimal() {
+        if (!displayString.contains(".")) {
+            displayString += ".";
+        }
+        return displayString;
+    }
 }

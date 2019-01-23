@@ -53,7 +53,7 @@ public class CalculatorTest {
         String intialString = "12345.";
         //Execution
         calculator.addSymbol(intialString);
-        String checkString = calculator.addSymbol(".");
+        String checkString = calculator.addDecimal();
         //Check
         assertEquals(intialString,checkString);
     }
