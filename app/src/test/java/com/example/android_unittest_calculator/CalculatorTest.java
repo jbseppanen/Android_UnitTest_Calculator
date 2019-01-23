@@ -16,6 +16,7 @@ public class CalculatorTest {
         calculator = new Calculator("");
     }
 
+/*
     @Test
     public void shouldReturnSingleCharacterWhenSingleCharacterAdded() {
         //Setup
@@ -46,25 +47,28 @@ public class CalculatorTest {
         //Check
         assertEquals(concatenatedString, checkString);
     }
+*/
 
     @Test
     public void shouldReturnSingleDecimalIfMultipleAdded() {
         //Setup
-        String intialString = "12345.";
+        String intialString = "12345";
+        String expectedString = "12345.";
         //Execution
-        calculator.addSymbol(intialString);
+        calculator.addDigit(intialString);
         String checkString = calculator.addDecimal();
+        checkString = calculator.addDecimal();
         //Check
-        assertEquals(intialString, checkString);
+        assertEquals(expectedString, checkString);
     }
 
     @Test
-    public void shouldReturnLastItemRemoved() {
+    public void shouldReturnWithLastItemRemoved() {
         //Setup
-        String intialString = "12345.";
-        String backspacedString = "12345";
+        String intialString = "12345";
+        String backspacedString = "1234";
         //Execution
-        calculator.addSymbol(intialString);
+        calculator.addDigit(intialString);
         String checkString = calculator.removeLast();
         //Check
         assertEquals(backspacedString, checkString);
@@ -88,6 +92,41 @@ public class CalculatorTest {
         String checkString = calculator.addDigit(digitsToAdd);
         //Check
         assertNotEquals(digitsToAdd, checkString);
+    }
+
+    @Test
+    public void shouldReturnStringWithAddedSymbol() {
+        //Setup
+        String intialString = "12345";
+        String expectedString = "12345+";
+        //Execution
+        calculator.addDigit(intialString);
+        String checkString = calculator.addSymbol("+");
+        //Check
+        assertEquals(expectedString, checkString);
+    }
+
+    @Test
+    public void shouldReturnStringWithLeading0IfSymbolFirst() {
+        //Setup
+        String expectedString = "0+";
+        //Execution
+        String checkString = calculator.addSymbol("+");
+        //Check
+        assertEquals(expectedString, checkString);
+    }
+
+    @Test
+    public void shouldReturnWithLastSymbolChangedRatherThanAddedIfLastCharacterIsAlreadyASymbol() {
+        //Setup
+        String intialString = "12345";
+        String expectedString = "12345-";
+        //Execution
+        calculator.addDigit(intialString);
+        calculator.addSymbol("+");
+        String checkString = calculator.addSymbol("-");
+        //Check
+        assertEquals(expectedString, checkString);
     }
 
 }
