@@ -13,6 +13,14 @@ public class Calculator {
         return displayString;
     }
 
+    String addDigit(String input) {
+        if (isDigitsOnly(input)) {
+            displayString += input;
+        }
+        return displayString;
+    }
+
+
     String addDecimal() {
         if (!displayString.contains(".")) {
             displayString += ".";
@@ -23,6 +31,18 @@ public class Calculator {
     String removeLast() {
         displayString = displayString.substring(0, displayString.length() - 1);
         return displayString;
+    }
+
+
+    private static boolean isDigitsOnly(CharSequence str) {
+        final int len = str.length();
+        for (int cp, i = 0; i < len; i += Character.charCount(cp)) {
+            cp = Character.codePointAt(str, i);
+            if (!Character.isDigit(cp)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 

@@ -55,7 +55,7 @@ public class CalculatorTest {
         calculator.addSymbol(intialString);
         String checkString = calculator.addDecimal();
         //Check
-        assertEquals(intialString,checkString);
+        assertEquals(intialString, checkString);
     }
 
     @Test
@@ -67,7 +67,27 @@ public class CalculatorTest {
         calculator.addSymbol(intialString);
         String checkString = calculator.removeLast();
         //Check
-        assertEquals(backspacedString,checkString);
+        assertEquals(backspacedString, checkString);
+    }
+
+    @Test
+    public void shouldReturnStringWithAddedDigits() {
+        //Setup
+        String digitsToAdd = "12345";
+        //Execution
+        String checkString = calculator.addDigit(digitsToAdd);
+        //Check
+        assertEquals(digitsToAdd, checkString);
+    }
+
+    @Test
+    public void shouldNotReturnStringWithAddedLetters() {
+        //Setup
+        String digitsToAdd = "abcde";
+        //Execution
+        String checkString = calculator.addDigit(digitsToAdd);
+        //Check
+        assertNotEquals(digitsToAdd, checkString);
     }
 
 }
