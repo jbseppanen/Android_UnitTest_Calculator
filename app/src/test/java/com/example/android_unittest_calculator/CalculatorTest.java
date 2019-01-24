@@ -52,10 +52,10 @@ public class CalculatorTest {
     @Test
     public void shouldReturnSingleDecimalIfMultipleAdded() {
         //Setup
-        String intialString = "12345";
+        String initialString = "12345";
         String expectedString = "12345.";
         //Execution
-        calculator.addDigit(intialString);
+        calculator.addDigit(initialString);
         String checkString = calculator.addDecimal();
         checkString = calculator.addDecimal();
         //Check
@@ -65,10 +65,10 @@ public class CalculatorTest {
     @Test
     public void shouldReturnWithLastItemRemoved() {
         //Setup
-        String intialString = "12345";
+        String initialString = "12345";
         String backspacedString = "1234";
         //Execution
-        calculator.addDigit(intialString);
+        calculator.addDigit(initialString);
         String checkString = calculator.removeLast();
         //Check
         assertEquals(backspacedString, checkString);
@@ -97,10 +97,10 @@ public class CalculatorTest {
     @Test
     public void shouldReturnStringWithAddedSymbol() {
         //Setup
-        String intialString = "12345";
+        String initialString = "12345";
         String expectedString = "12345+";
         //Execution
-        calculator.addDigit(intialString);
+        calculator.addDigit(initialString);
         String checkString = calculator.addSymbol("+");
         //Check
         assertEquals(expectedString, checkString);
@@ -119,14 +119,93 @@ public class CalculatorTest {
     @Test
     public void shouldReturnWithLastSymbolChangedRatherThanAddedIfLastCharacterIsAlreadyASymbol() {
         //Setup
-        String intialString = "12345";
+        String initialString = "12345";
         String expectedString = "12345-";
         //Execution
-        calculator.addDigit(intialString);
+        calculator.addDigit(initialString);
         calculator.addSymbol("+");
         String checkString = calculator.addSymbol("-");
         //Check
         assertEquals(expectedString, checkString);
     }
+
+    @Test
+    public void shouldReturnAdditionCalculation() {
+        //Setup
+        String string1 = "1";
+        String operator = "+";
+        String string2 = "2";
+        String expectedString = "3";
+        //Execution
+        calculator.addDigit(string1);
+        calculator.addSymbol(operator);
+        calculator.addDigit(string2);
+        String checkString = calculator.calculate();
+        //Check
+        assertEquals(expectedString, checkString);
+    }
+
+    @Test
+    public void shouldReturnSubtractionCalculation() {
+        //Setup
+        String string1 = "3";
+        String operator = "-";
+        String string2 = "2";
+        String expectedString = "1";
+        //Execution
+        calculator.addDigit(string1);
+        calculator.addSymbol(operator);
+        calculator.addDigit(string2);
+        String checkString = calculator.calculate();
+        //Check
+        assertEquals(expectedString, checkString);
+    }
+
+    @Test
+    public void shouldReturnMultiplicationCalculation() {
+        //Setup
+        String string1 = "4";
+        String operator = "*";
+        String string2 = "2";
+        String expectedString = "8";
+        //Execution
+        calculator.addDigit(string1);
+        calculator.addSymbol(operator);
+        calculator.addDigit(string2);
+        String checkString = calculator.calculate();
+        //Check
+        assertEquals(expectedString, checkString);
+    }
+
+    @Test
+    public void shouldReturnDivisionCalculation() {
+        //Setup
+        String string1 = "8";
+        String operator = "/";
+        String string2 = "2";
+        String expectedString = "4";
+        //Execution
+        calculator.addDigit(string1);
+        calculator.addSymbol(operator);
+        calculator.addDigit(string2);
+        String checkString = calculator.calculate();
+        //Check
+        assertEquals(expectedString, checkString);
+    }
+
+    @Test
+    public void shouldReturnCalculationWhenLastItemIsASymbol() {
+        //Setup
+        String string1 = "2";
+        String operator = "+";
+        String expectedString = "4";
+        //Execution
+        calculator.addDigit(string1);
+        calculator.addSymbol(operator);
+        String checkString = calculator.calculate();
+        //Check
+        assertEquals(expectedString, checkString);
+    }
+
 
 }
