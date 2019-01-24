@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "userClick: " + buttonText);
 
         if (Calculator.isDigitsOnly(buttonText)) {
-
+            calculator.addDigit(buttonText);
         } else if (Arrays.asList(Calculator.ALLOWED_SYMBOLS).contains(buttonText)) {
 
         } else {
