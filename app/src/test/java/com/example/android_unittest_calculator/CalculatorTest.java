@@ -207,5 +207,32 @@ public class CalculatorTest {
         assertEquals(expectedString, checkString);
     }
 
+    @Test
+    public void shouldReturnCorrectlyWhenInputInAddDigitsIsNegative() {
+        //Setup
+        String string1 = "-4";
+        String expectedString = "-4";
+        //Execution
+        String checkString = calculator.addDigit(string1);
+        //Check
+        assertEquals(expectedString, checkString);
+    }
+
+    @Test
+    public void shouldReturnCalculationCorrectlyWhenNegative() {
+        //Setup
+        String string1 = "-8";
+        String operator = "/";
+        String string2 = "2";
+        String expectedString = "-4";
+        //Execution
+        calculator.addDigit(string1);
+        calculator.addSymbol(operator);
+        calculator.addDigit(string2);
+        String checkString = calculator.calculate();
+        //Check
+        assertEquals(expectedString, checkString);
+    }
+
 
 }

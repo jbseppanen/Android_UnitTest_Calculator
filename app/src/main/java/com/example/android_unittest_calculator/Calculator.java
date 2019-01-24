@@ -8,6 +8,9 @@ public class Calculator {
     public static final String[] ALLOWED_SYMBOLS = {"+", "-", "*", "/"};
 
     private String displayString;
+    private ArrayList<String> operators = new ArrayList<>();
+    private ArrayList<Double> numbers = new ArrayList<>();
+    private StringBuilder numberBuilder = new StringBuilder();
 
     public Calculator(String displayString) {
         this.displayString = displayString;
@@ -22,15 +25,24 @@ public class Calculator {
             if (Arrays.asList(ALLOWED_SYMBOLS).contains(lastChar)) {
                 removeLast();
             }
+            operators.add(input);
+            numbers.add(Double.valueOf(String.valueOf(numberBuilder)));
             displayString += input;
         }
         return displayString;
     }
 
     String addDigit(String input) {
-        if (isDigitsOnly(input)) {
-            displayString += input;
+        String addedString = "";
+        if (input.substring(0, 1).equals("-") && input.length() == 1) {
+            addedString = "-";
+            input = input.substring(1);
         }
+        if (isDigitsOnly(input)) {
+            addedString += input;
+        }
+        numberBuilder.append(addedString);
+        displayString += addedString;
         return displayString;
     }
 
@@ -45,38 +57,24 @@ public class Calculator {
 
     String removeLast() {
         if (displayString.length() > 0) {
+            //TODO figure out what to do if backpsace past an operator into a number.
+            String lastChar = displayString.substring(displayString.length() - 1);
+            if (Arrays.asList(ALLOWED_SYMBOLS).contains(lastChar)) {
+                operators.remove(operators.size() - 1);
+            }
             displayString = displayString.substring(0, displayString.length() - 1);
         }
         return displayString;
     }
 
     String calculate() {
-        ArrayList<String> strings = new ArrayList<>();
-        String[] stringCharacterArray = displayString.split("");
-        StringBuilder builder = new StringBuilder();
-        for (String item : stringCharacterArray) {
-            if (isDigitsOnly(String.valueOf(item))) {
-                builder.append(item);
-            } else if (item.equals(".")) {
-                builder.append(item);
-            } else if (Arrays.asList(ALLOWED_SYMBOLS).contains(item)) {
-                strings.add(builder.toString());
-                builder.setLength(0);
-                strings.add(item);
-            }
-        }
-        if (builder.length() == 0) {
-            strings.add(strings.get(strings.size()-2));
-        } else {
-            strings.add(builder.toString());
-        }
 
+        double total = numbers.get(0);
 
-        double total = Double.parseDouble(strings.get(0));
-
-        for (int i = 1; i < strings.size(); i += 2) {
-            String operator = strings.get(i);
-            double number = Double.parseDouble(strings.get(i + 1));
+        for (int i = 0; i <operators.size(); ++i) {
+//            String operator = strings.get(i);
+            String operator = operators.get(i);
+            double number = numbers.get(i + 1);
             switch (operator) {
                 case "+":
                     total = total + number;
