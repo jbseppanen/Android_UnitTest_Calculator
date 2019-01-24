@@ -158,6 +158,60 @@ public class MainActivityTest {
 
         onView(withId(R.id.text_display)).check(matches(withText("0")));
     }
+    @Test
+    public void shouldAdd1plus2ToUI() {
+        //setup
+        onView(withId(R.id.button_clear)).perform(click());
 
+        //execute
+        onView(withId(R.id.button_1)).perform(click());
+        onView(withId(R.id.button_add)).perform(click());
+        onView(withId(R.id.button_2)).perform(click());
+        //check
+
+        onView(withId(R.id.text_display)).check(matches(withText("1+2")));
+    }
+
+    @Test
+    public void shouldAdd1Minus2ToUI() {
+        //setup
+        onView(withId(R.id.button_clear)).perform(click());
+
+        //execute
+        onView(withId(R.id.button_1)).perform(click());
+        onView(withId(R.id.button_subtract)).perform(click());
+        onView(withId(R.id.button_2)).perform(click());
+        //check
+
+        onView(withId(R.id.text_display)).check(matches(withText("1-2")));
+    }
+
+    @Test
+    public void shouldAdd1Times2ToUI() {
+        //setup
+        onView(withId(R.id.button_clear)).perform(click());
+
+        //execute
+        onView(withId(R.id.button_1)).perform(click());
+        onView(withId(R.id.button_multiply)).perform(click());
+        onView(withId(R.id.button_2)).perform(click());
+        //check
+
+        onView(withId(R.id.text_display)).check(matches(withText("1*2")));
+    }
+
+    @Test
+    public void shouldAdd1DividedBy2ToUI() {
+        //setup
+        onView(withId(R.id.button_clear)).perform(click());
+
+        //execute
+        onView(withId(R.id.button_1)).perform(click());
+        onView(withId(R.id.button_divide)).perform(click());
+        onView(withId(R.id.button_2)).perform(click());
+        //check
+
+        onView(withId(R.id.text_display)).check(matches(withText("1/2")));
+    }
 
 }
