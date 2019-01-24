@@ -34,4 +34,17 @@ public class MainActivityTest {
         onView(withId(R.id.text_display)).check(matches(withText("1")));
     }
 
+    @Test
+    public void shouldClearDisplay() {
+        //setup
+
+        //execute
+        onView(withId(R.id.button_1)).perform(click());
+        onView(withId(R.id.button_1)).perform(click());
+        onView(withId(R.id.button_clear)).perform(click());
+
+        //check
+        onView(withId(R.id.text_display)).check(matches(withText("")));
+    }
+
 }

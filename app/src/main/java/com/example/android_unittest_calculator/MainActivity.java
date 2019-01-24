@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
                 case "=":
 
+                case "CLR":
+                    calculator.clear();
             }
         }
         textView.setText(calculator.displayString);

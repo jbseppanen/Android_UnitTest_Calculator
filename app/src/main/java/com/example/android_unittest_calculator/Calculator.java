@@ -122,6 +122,14 @@ public class Calculator {
         return displayString;
     }
 
+    String clear() {
+        numbers.clear();
+        operators.clear();
+        numberBuilder.setLength(0);
+        displayString = "";
+        return displayString;
+    }
+
 
 
 
