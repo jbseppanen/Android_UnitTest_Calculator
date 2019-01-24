@@ -1,5 +1,7 @@
 package com.example.android_unittest_calculator;
 
+import android.text.TextUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -7,7 +9,7 @@ public class Calculator {
 
     public static final String[] ALLOWED_SYMBOLS = {"+", "-", "*", "/"};
 
-    private String displayString;
+    public String displayString;
     private ArrayList<String> operators = new ArrayList<>();
     private ArrayList<Double> numbers = new ArrayList<>();
     private StringBuilder numberBuilder = new StringBuilder();
@@ -116,13 +118,15 @@ public class Calculator {
         } else {
             displayString = String.valueOf(total);
         }
-
+        TextUtils.isDigitsOnly("test");
         return displayString;
     }
 
 
+
+
     //Copied from TextUtils.isDigitsOnly to make it work with tests.
-    private static boolean isDigitsOnly(CharSequence str) {
+    public static boolean isDigitsOnly(CharSequence str) {
         final int len = str.length();
         for (int cp, i = 0; i < len; i += Character.charCount(cp)) {
             cp = Character.codePointAt(str, i);
