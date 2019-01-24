@@ -214,4 +214,18 @@ public class MainActivityTest {
         onView(withId(R.id.text_display)).check(matches(withText("1/2")));
     }
 
+    @Test
+    public void shouldAddDecimalToUI() {
+        //setup
+        onView(withId(R.id.button_clear)).perform(click());
+
+        //execute
+        onView(withId(R.id.button_1)).perform(click());
+        onView(withId(R.id.button_decimal)).perform(click());
+        onView(withId(R.id.button_2)).perform(click());
+        //check
+
+        onView(withId(R.id.text_display)).check(matches(withText("1.2")));
+    }
+
 }
