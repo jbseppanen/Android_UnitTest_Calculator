@@ -174,7 +174,7 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/button_Decimal"
+                android:id="@+id/button_decimal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

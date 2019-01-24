@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         if (Calculator.isDigitsOnly(buttonText)) {
             calculator.addDigit(buttonText);
         } else if (Arrays.asList(Calculator.ALLOWED_SYMBOLS).contains(buttonText)) {
-
+            calculator.addSymbol(buttonText);
         } else {
             switch (buttonText) {
                 case ".":

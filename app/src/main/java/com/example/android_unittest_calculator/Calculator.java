@@ -118,7 +118,6 @@ public class Calculator {
         } else {
             displayString = String.valueOf(total);
         }
-        TextUtils.isDigitsOnly("test");
         return displayString;
     }
 
