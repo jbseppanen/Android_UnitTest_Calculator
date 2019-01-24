@@ -20,13 +20,18 @@ public class Calculator {
         if (Arrays.asList(ALLOWED_SYMBOLS).contains(input)) {
             if (displayString.length() == 0) {
                 displayString += "0";
+                numberBuilder.append("0");
             }
             String lastChar = displayString.substring(displayString.length() - 1);
             if (Arrays.asList(ALLOWED_SYMBOLS).contains(lastChar)) {
                 removeLast();
             }
             operators.add(input);
-            numbers.add(Double.valueOf(String.valueOf(numberBuilder)));
+
+            if(numberBuilder.length()>0) {
+                numbers.add(Double.valueOf(numberBuilder.toString()));
+                numberBuilder.setLength(0);
+            }
             displayString += input;
         }
         return displayString;
@@ -34,7 +39,7 @@ public class Calculator {
 
     String addDigit(String input) {
         String addedString = "";
-        if (input.substring(0, 1).equals("-") && input.length() == 1) {
+        if (input.substring(0, 1).equals("-")) {
             addedString = "-";
             input = input.substring(1);
         }
@@ -51,6 +56,7 @@ public class Calculator {
         //TODO add a 0 if not numeric before it.
         if (!displayString.contains(".")) {
             displayString += ".";
+            numberBuilder.append(".");
         }
         return displayString;
     }
@@ -69,10 +75,16 @@ public class Calculator {
 
     String calculate() {
 
+        if(numberBuilder.length()>0) {
+            numbers.add(Double.valueOf(numberBuilder.toString()));
+            numberBuilder.setLength(0);
+        } else if (numbers.size()<2){
+            numbers.add(numbers.get(numbers.size()-1));
+        }
+
         double total = numbers.get(0);
 
         for (int i = 0; i <operators.size(); ++i) {
-//            String operator = strings.get(i);
             String operator = operators.get(i);
             double number = numbers.get(i + 1);
             switch (operator) {
@@ -89,13 +101,23 @@ public class Calculator {
                     total = total / number;
             }
         }
-        String returnValue;
+
+        Double lastNumber = numbers.get(numbers.size()-1);
+        numbers.clear();
+        numbers.add(total);
+        numbers.add(lastNumber);
+
+        String lastOperator = operators.get(operators.size()-1);
+        operators.clear();
+        operators.add(lastOperator);
+
         if (total == (int) total) {
-            returnValue = String.valueOf((int) total);
+            displayString = String.valueOf((int) total);
         } else {
-            returnValue = String.valueOf(total);
+            displayString = String.valueOf(total);
         }
-        return returnValue;
+
+        return displayString;
     }
 
 

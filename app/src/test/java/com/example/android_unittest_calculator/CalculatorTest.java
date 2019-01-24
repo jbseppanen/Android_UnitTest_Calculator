@@ -234,5 +234,25 @@ public class CalculatorTest {
         assertEquals(expectedString, checkString);
     }
 
+    @Test
+    public void shouldReturnContinuedCalculationIfCaclulationCalledMultipleTimes () {
+        //Setup
+        String string1 = "5";
+        String operator = "+";
+        String string2 = "1";
+        String expectedString = "8";
+
+        //Execution
+        calculator.addDigit(string1);
+        calculator.addSymbol(operator);
+        calculator.addDigit(string2);
+        calculator.calculate();
+        calculator.calculate();
+        String checkString = calculator.calculate();
+
+        //Check
+        assertEquals(expectedString, checkString);
+    }
+
 
 }
