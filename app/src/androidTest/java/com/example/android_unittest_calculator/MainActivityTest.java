@@ -1,14 +1,9 @@
 package com.example.android_unittest_calculator;
 
-import android.widget.TextView;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import androidx.test.espresso.ViewInteraction;
-import androidx.test.espresso.assertion.ViewAssertions;
-import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.rule.ActivityTestRule;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -16,7 +11,6 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.junit.Assert.*;
 
 public class MainActivityTest {
     @Rule
@@ -33,8 +27,8 @@ public class MainActivityTest {
 
         //execute
         onView(withId(R.id.button_1)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("1")));
     }
 
@@ -58,8 +52,8 @@ public class MainActivityTest {
 
         //execute
         onView(withId(R.id.button_2)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("2")));
     }
 
@@ -70,8 +64,8 @@ public class MainActivityTest {
 
         //execute
         onView(withId(R.id.button_3)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("3")));
     }
 
@@ -82,8 +76,8 @@ public class MainActivityTest {
 
         //execute
         onView(withId(R.id.button_4)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("4")));
     }
 
@@ -94,8 +88,8 @@ public class MainActivityTest {
 
         //execute
         onView(withId(R.id.button_5)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("5")));
     }
 
@@ -106,8 +100,8 @@ public class MainActivityTest {
 
         //execute
         onView(withId(R.id.button_6)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("6")));
     }
 
@@ -118,8 +112,8 @@ public class MainActivityTest {
 
         //execute
         onView(withId(R.id.button_7)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("7")));
     }
 
@@ -130,8 +124,8 @@ public class MainActivityTest {
 
         //execute
         onView(withId(R.id.button_8)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("8")));
     }
 
@@ -142,8 +136,8 @@ public class MainActivityTest {
 
         //execute
         onView(withId(R.id.button_9)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("9")));
     }
 
@@ -154,10 +148,11 @@ public class MainActivityTest {
 
         //execute
         onView(withId(R.id.button_0)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("0")));
     }
+
     @Test
     public void shouldAdd1plus2ToUI() {
         //setup
@@ -167,8 +162,8 @@ public class MainActivityTest {
         onView(withId(R.id.button_1)).perform(click());
         onView(withId(R.id.button_add)).perform(click());
         onView(withId(R.id.button_2)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("1+2")));
     }
 
@@ -181,8 +176,8 @@ public class MainActivityTest {
         onView(withId(R.id.button_1)).perform(click());
         onView(withId(R.id.button_subtract)).perform(click());
         onView(withId(R.id.button_2)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("1-2")));
     }
 
@@ -195,8 +190,8 @@ public class MainActivityTest {
         onView(withId(R.id.button_1)).perform(click());
         onView(withId(R.id.button_multiply)).perform(click());
         onView(withId(R.id.button_2)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("1*2")));
     }
 
@@ -209,8 +204,8 @@ public class MainActivityTest {
         onView(withId(R.id.button_1)).perform(click());
         onView(withId(R.id.button_divide)).perform(click());
         onView(withId(R.id.button_2)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("1/2")));
     }
 
@@ -223,9 +218,24 @@ public class MainActivityTest {
         onView(withId(R.id.button_1)).perform(click());
         onView(withId(R.id.button_decimal)).perform(click());
         onView(withId(R.id.button_2)).perform(click());
-        //check
 
+        //check
         onView(withId(R.id.text_display)).check(matches(withText("1.2")));
+    }
+
+    @Test
+    public void shouldReturnCorrectResultToUIOnCaclulation() {
+        //setup
+        onView(withId(R.id.button_clear)).perform(click());
+
+        //execute
+        onView(withId(R.id.button_1)).perform(click());
+        onView(withId(R.id.button_add)).perform(click());
+        onView(withId(R.id.button_2)).perform(click());
+        onView(withId(R.id.button_equals)).perform(click());
+
+        //check
+        onView(withId(R.id.text_display)).check(matches(withText("3")));
     }
 
 }

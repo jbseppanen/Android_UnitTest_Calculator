@@ -1,13 +1,12 @@
 package com.example.android_unittest_calculator;
 
-import android.text.TextUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Calculator {
 
     public static final String[] ALLOWED_SYMBOLS = {"+", "-", "*", "/"};
+    public static final String ERROR_DIVIDE_BY_0 = "E: div by 0";
 
     public String displayString;
     private ArrayList<String> operators = new ArrayList<>();
@@ -56,7 +55,7 @@ public class Calculator {
 
     String addDecimal() {
         //TODO add a 0 if not numeric before it.
-        if (!displayString.contains(".")) {
+        if (! numberBuilder.toString().contains(".")) {
             displayString += ".";
             numberBuilder.append(".");
         }
@@ -100,7 +99,13 @@ public class Calculator {
                     total = total * number;
                     break;
                 case "/":
+                    if (number == 0) {
+                        clear();
+                        displayString = ERROR_DIVIDE_BY_0;
+                        return displayString;
+                    }
                     total = total / number;
+                    break;
             }
         }
 

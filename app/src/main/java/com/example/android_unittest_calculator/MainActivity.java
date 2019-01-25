@@ -36,11 +36,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             switch (buttonText) {
                 case ".":
-
+                    calculator.addDecimal();
+                    break;
                 case "=":
-
+                    calculator.calculate();
+                    break;
                 case "CLR":
                     calculator.clear();
+                    break;
             }
         }
         textView.setText(calculator.displayString);
