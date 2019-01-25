@@ -253,4 +253,38 @@ public class MainActivityTest {
         onView(withId(R.id.text_display)).check(matches(withText(Calculator.ERROR_DIVIDE_BY_0)));
     }
 
+    @Test
+    public void shouldReturnCorrectCalculationToUIWithMultipleEqualsPress() {
+        //setup
+        onView(withId(R.id.button_clear)).perform(click());
+
+        //execute
+        onView(withId(R.id.button_1)).perform(click());
+        onView(withId(R.id.button_add)).perform(click());
+        onView(withId(R.id.button_2)).perform(click());
+        onView(withId(R.id.button_equals)).perform(click());
+        onView(withId(R.id.button_equals)).perform(click());
+        onView(withId(R.id.button_equals)).perform(click());
+
+        //check
+        onView(withId(R.id.text_display)).check(matches(withText("7")));
+    }
+
+    @Test
+    public void shouldRemoveLastItemInUI() {
+        //setup
+        onView(withId(R.id.button_clear)).perform(click());
+
+        //execute
+        onView(withId(R.id.button_1)).perform(click());
+        onView(withId(R.id.button_add)).perform(click());
+        onView(withId(R.id.button_2)).perform(click());
+        onView(withId(R.id.button_decimal)).perform(click());
+        onView(withId(R.id.button_2)).perform(click());
+        onView(withId(R.id.button_backspace)).perform(click());
+
+        //check
+        onView(withId(R.id.text_display)).check(matches(withText("1+2.")));
+    }
+
 }

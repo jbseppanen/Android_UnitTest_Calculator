@@ -16,10 +16,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="#efefef"
-        android:text="0"
         android:ems="10"
         android:gravity="right|center_vertical"
         android:maxLength="12"
+        android:text="0"
         android:textSize="48sp"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -223,6 +223,15 @@
                 android:background="@drawable/button"
                 android:onClick="userClick"
                 android:text="=" />
+
+            <Button
+                android:id="@+id/button_backspace"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/button"
+                android:onClick="userClick"
+                android:text="@string/backspace_button_label" />
         </TableRow>
     </TableLayout>
 </android.support.constraint.ConstraintLayout>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Android_UnitTest_Calculator</string>
+    <string name="backspace_button_label"><![CDATA[<]]></string>
 </resources>
