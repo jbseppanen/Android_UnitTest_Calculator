@@ -238,4 +238,19 @@ public class MainActivityTest {
         onView(withId(R.id.text_display)).check(matches(withText("3")));
     }
 
+    @Test
+    public void shouldReturnErrorMessageIfDividingBy0() {
+        //setup
+        onView(withId(R.id.button_clear)).perform(click());
+
+        //execute
+        onView(withId(R.id.button_5)).perform(click());
+        onView(withId(R.id.button_divide)).perform(click());
+        onView(withId(R.id.button_0)).perform(click());
+        onView(withId(R.id.button_equals)).perform(click());
+
+        //check
+        onView(withId(R.id.text_display)).check(matches(withText(Calculator.ERROR_DIVIDE_BY_0)));
+    }
+
 }
